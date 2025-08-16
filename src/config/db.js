@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2/promise'); // to use async/await
 
 let pool;
 async function getPool() {

@@ -1,8 +1,8 @@
 require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
+const express = require('express'); // core web framework
+const helmet = require('helmet'); // secure HTTP headers
 const cors = require('cors');
-const morgan = require('morgan');
+const morgan = require('morgan'); // logs HTTP requests
 const routes = require('./routes');
 const errorHandler = require('./middleware/error');
 

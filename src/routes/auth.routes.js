@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require('express').Router(); // to attach routes
 const { register, login } = require('../controllers/auth.controller');
 const { registerRules, loginRules } = require('../validators/auth.validators');
 
