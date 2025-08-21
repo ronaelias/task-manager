@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
-const { query } = require('../config/db');
+const { query, exec } = require('../config/db');
 const { ok, created } = require('../utils/responses');
 
 function signToken(user) {
@@ -33,7 +33,7 @@ async function register(req, res, next) {
     const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS || 10);
     const hashed = await bcrypt.hash(password, saltRounds);
 
-    const result = await query(
+    const result = await exec(
       `INSERT INTO users (name, email, password) VALUES (:name, :email, :password)`,
       { name, email, password: hashed }
     );

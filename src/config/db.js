@@ -16,6 +16,7 @@ async function getPool() {
   return pool;
 }
 
+// SELECT return rows
 async function query(sql, params = {}) {
   try {
     const p = await getPool();
@@ -27,4 +28,16 @@ async function query(sql, params = {}) {
   }
 }
 
-module.exports = { getPool, query };
+// INSERT/UPDATE/DELETE return OkPacket
+async function exec(sql, params = {}) {
+  try {
+    const p = await getPool();
+    const [result] = await p.execute(sql, params);
+    return result;
+  } catch(err) {
+    err.source = 'DB_EXEC';
+    return err;
+  }
+}
+
+module.exports = { getPool, query, exec };
